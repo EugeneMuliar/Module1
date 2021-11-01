@@ -1,0 +1,7 @@
+doktor_net.content:
+  path: '/doktor_net/cats'
+  defaults:
+    _controller: '\Drupal\doktor_net\Controller\DoktorController::content'
+    _title: 'Hello! You can add here a photo of your cat.'
+  requirements:
+    _permission: 'access content'
