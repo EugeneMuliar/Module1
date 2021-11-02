@@ -1,3 +1,31 @@
 .logo > img:nth-child(1) {
   width: 75px;
 }
+
+.main-container .page-header {
+  text-transform: uppercase;
+  font-size: 26px;
+}
+.main-container .cats_page h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.main-container .cats_page .doktor-form {
+  max-width: 520px;
+}
+.main-container .cats_page .doktor-form .form-type-textfield .control-label {
+  font-size: 14px;
+}
+.main-container .cats_page .doktor-form .form-type-textfield input {
+  border-radius: 0;
+  padding: 3px;
+  font-size: 20px;
+  margin: 15px 0;
+}
+.main-container .cats_page .doktor-form .button {
+  background-color: #67bfdc;
+  border-color: #67bfdc;
+}
+.main-container .cats_page .doktor-form .button:hover {
+  background-color: #5cb0c9;
+}

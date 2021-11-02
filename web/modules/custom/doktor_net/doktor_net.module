@@ -3,12 +3,14 @@
 * Implements hook_theme().
 */
 function doktor_net_theme($existing, $type, $theme, $path) {
+
   return [
     'my-template' => [
+      'render element' => 'form', //render form to display
       'variables' => [
         'data' => NULL,
-        'nid' => NULL,
+        'form'=> NULL,
         ],
-      ],
-    ];
-  }
+    ]
+  ];
+}

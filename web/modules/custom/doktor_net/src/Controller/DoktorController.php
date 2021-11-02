@@ -17,11 +17,16 @@ class DoktorController extends ControllerBase {
    */
   public function content() {
 
-    $element = [
+    //Get form to the variable
+    $doktorform['doktor_form'] = \Drupal::formBuilder()->getForm('Drupal\doktor_net\Form\DoktorForm');
+
+    //Send values to template
+    $build = [
       '#theme' => 'my-template',
+      '#form' => $doktorform,
       '#data' => 'Hello Cat',
     ];
-    return $element;
+    return  $build;
   }
 
 }
