@@ -13,14 +13,26 @@
 .main-container .cats_page .doktor-form {
   max-width: 520px;
 }
-.main-container .cats_page .doktor-form .form-type-textfield .control-label {
+.main-container .cats_page .doktor-form .form-item .control-label {
   font-size: 14px;
 }
-.main-container .cats_page .doktor-form .form-type-textfield input {
+.main-container .cats_page .doktor-form .form-item input {
   border-radius: 0;
   padding: 3px;
   font-size: 20px;
   margin: 15px 0;
+  max-width: 400px;
+}
+.main-container .cats_page .doktor-form .form-item .input-group-addon {
+  display: none;
+}
+.main-container .cats_page .doktor-form .valid-message {
+  float: right;
+  margin-top: -32px;
+  font-size: 14px;
+}
+.main-container .cats_page .doktor-form .email-valid-message {
+  margin-top: -44px;
 }
 .main-container .cats_page .doktor-form .button {
   background-color: #67bfdc;

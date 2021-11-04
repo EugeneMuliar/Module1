@@ -10,7 +10,7 @@
     }
     .doktor-form{
       max-width: 520px;
-      .form-type-textfield{
+      .form-item{
         .control-label{
           font-size: 14px;
         }
@@ -19,7 +19,19 @@
           padding: 3px;
           font-size: 20px;
           margin: 15px 0;
+          max-width: 400px;
         }
+        .input-group-addon{
+         display: none;
+        }
+      }
+      .valid-message{
+        float: right;
+        margin-top: -32px;
+        font-size: 14px
+      }
+      .email-valid-message{
+        margin-top: -44px;
       }
       .button{
         background-color: #67bfdc;
