@@ -26,6 +26,25 @@
 .main-container .cats_page .doktor-form .form-item .input-group-addon {
   display: none;
 }
+.main-container .cats_page .doktor-form .messages__wrapper {
+  max-width: 400px;
+}
+.main-container .cats_page .doktor-form .form-type-managed-file {
+  max-width: 400px;
+}
+.main-container .cats_page .doktor-form .form-type-managed-file .form-managed-file {
+  display: flex;
+  flex-direction: column;
+}
+.main-container .cats_page .doktor-form .form-type-managed-file .form-managed-file .file--image {
+  text-align: start;
+}
+.main-container .cats_page .doktor-form .form-type-managed-file .form-managed-file .btn-danger {
+  margin: 10px 0 10px 10px;
+  width: 90px;
+  align-self: end;
+  display: flex;
+}
 .main-container .cats_page .doktor-form .valid-message {
   float: right;
   margin-top: -32px;
@@ -34,10 +53,10 @@
 .main-container .cats_page .doktor-form .email-valid-message {
   margin-top: -44px;
 }
-.main-container .cats_page .doktor-form .button {
+.main-container .cats_page .doktor-form .btn-success {
   background-color: #67bfdc;
   border-color: #67bfdc;
 }
-.main-container .cats_page .doktor-form .button:hover {
+.main-container .cats_page .doktor-form .btn-success:hover {
   background-color: #5cb0c9;
 }

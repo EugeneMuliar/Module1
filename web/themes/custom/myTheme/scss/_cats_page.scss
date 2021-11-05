@@ -25,6 +25,26 @@
          display: none;
         }
       }
+      .messages__wrapper{
+        max-width: 400px;
+      }
+      .form-type-managed-file{
+        max-width: 400px;
+        .form-managed-file{
+          display: flex;
+          flex-direction: column;
+          .file--image{
+            text-align: start;
+          }
+          .btn-danger{
+            margin: 10px 0 10px 10px;
+            width: 90px;
+            align-self: end;
+            display: flex;
+          }
+        }
+
+      }
       .valid-message{
         float: right;
         margin-top: -32px;
@@ -33,11 +53,11 @@
       .email-valid-message{
         margin-top: -44px;
       }
-      .button{
+      .btn-success{
         background-color: #67bfdc;
         border-color: #67bfdc;
       }
-      .button:hover{
+      .btn-success:hover{
         background-color: #5cb0c9;
       }
     }

@@ -37,12 +37,23 @@ class DoktorForm extends FormBase
       '#ajax' => [
         'callback' => '::validateEmailAjax',
         'event' => 'change',
-//        'progress' =>[
-//          'type' => 'throbber',
-//          'message' => t('Verifying email...'),
-//        ],
       ],
       '#suffix' => '<span class="email-valid-message valid-message"></span>'
+    ];
+    $form['cats_image'] = [
+      '#type' => 'managed_file',
+      '#name' => 'cats_img',
+      '#title'=>$this->t('Your cats image:'),
+      '#description' => $this->t('The file must be .jpeg, .jpg or .png format and less than 2MB.'),
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png jpg jpeg'],
+        'file_validate_size' => [2*1024*1024],
+        ],
+      '#ajax' => [
+        'callback' => '::validateIMGAjax',
+        'event' => 'load',
+      ],
+      '#suffix' => '<span class="img-valid-message valid-message"></span>'
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -91,7 +102,6 @@ class DoktorForm extends FormBase
     }
     return FALSE;
   }
-
   public function validateEmailAjax(array &$form, FormStateInterface $form_state)
   {
     $valid = $this->validateEmail($form, $form_state);
@@ -108,6 +118,32 @@ class DoktorForm extends FormBase
     return $response;
   }
 
+//  public function validateIMG(array &$form, FormStateInterface $form_state){
+//    $file = file_save_upload('cats_image', [
+//      'file_validate_is_image'=>['png jpg jpeg'],
+//      'file_validate_size'=> [2*1024*1024],
+//      ]);
+//    if($file){
+//      return TRUE;
+//    }
+//    else{
+//      return FALSE;
+//    }
+//  }
+//  public function validateIMGAjax(array &$form, FormStateInterface $form_state){
+//    $valid = $this->validateIMG($form, $form_state);
+//    $response = new AjaxResponse();
+//    if ($valid) {
+//      $css = ['border' => '1px solid green'];
+//      $message = $this->t('Image is ok.');
+//    } else {
+//      $css = ['border' => '1px solid red'];
+//      $message = $this->t('Image is not valid.');
+//    }
+//    $response->addCommand(new CssCommand('#edit-cats_image', $css));
+//    $response->addCommand(new HtmlCommand('.img-valid-message', $message));
+//    return $response;
+//  }
   public function validateForm(array &$form, FormStateInterface $form_state)
   {
 
