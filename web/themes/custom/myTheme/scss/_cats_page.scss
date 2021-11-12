@@ -10,6 +10,9 @@
     }
     .doktor-form{
       max-width: 520px;
+      background-color: #e7e7e7;
+      padding: 10px;
+      border-radius: 15px;
       .form-item{
         .control-label{
           font-size: 14px;
@@ -59,6 +62,54 @@
       }
       .btn-success:hover{
         background-color: #5cb0c9;
+      }
+    }
+
+    .cats_table{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 30px 0;
+      .cat-card{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        background-color: #e7e7e7;
+        border-radius: 15px;
+        min-width: 180px;
+        min-height: 310px;
+        .cat-name{
+            text-transform: uppercase;
+            font-size: 22px;
+
+        }
+        .cat-email{
+          font-size: 14px;
+        }
+        .cat-image{
+          max-width: 145px;
+          height: 145px;
+        }
+        .cat-created-date{
+          margin-bottom: 15px;
+        }
+        .cat-btn{
+          width: 100%;
+          .edit-cat{
+            float: left;
+            margin-left: 15px;
+          }
+          .delete-cat{
+            float: right;
+            margin-right: 15px;
+          }
+          .edit-cat,.delete-cat{
+            a{
+              color: #000;
+            }
+          }
+        }
       }
     }
   }

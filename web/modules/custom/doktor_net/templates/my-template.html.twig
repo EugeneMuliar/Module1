@@ -1,6 +1,24 @@
 <div class="cats_page">
   <h2>Add your cat!</h2>
-
   {{ form }}
+
+  {% if cats %}
+    <div class="cats_table">
+      {% for cat in cats %}
+        <div class="cat-card">
+          <h3 class="cat-name">{{ cat.cats_name }}</h3>
+          <h4 class="cat-email">{{ cat.email }}</h4>
+          <div class="cat-image"><a href="{{ file_url(cat.fid['#uri']) }}" target="_blank">{{ cat.fid }}</a></div>
+          <h5 class="cat-created-date">{{ cat.created_date}}</h5>
+          {% if user.hasPermission('administer nodes') %}
+            <div class="cat-btn">
+              <div class="edit-cat"><a href="/doktor/editcat/{{ cat.id }}" class="use-ajax edit-cat-btn" data-dialog-type="modal">Edit</a></div>
+              <div class="delete-cat"><a href="/doktor/deletecat/{{ cat.id }}" class="use-ajax delete-cat-btn" data-dialog-type="modal">Delete</a></div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 
