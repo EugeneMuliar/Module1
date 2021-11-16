@@ -1,0 +1,6 @@
+doktor_net.cats.admin:
+  title: 'Cats'
+  parent: system.admin_structure
+  description: 'Cat List'
+  route_name: doktor_net.AdminContent
+  weight: 100

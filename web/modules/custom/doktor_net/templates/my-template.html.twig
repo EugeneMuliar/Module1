@@ -12,8 +12,8 @@
           <h5 class="cat-created-date">{{ cat.created_date}}</h5>
           {% if user.hasPermission('administer nodes') %}
             <div class="cat-btn">
-              <div class="edit-cat"><a href="/doktor/editcat/{{ cat.id }}" class="use-ajax edit-cat-btn" data-dialog-type="modal">Edit</a></div>
-              <div class="delete-cat"><a href="/doktor/deletecat/{{ cat.id }}" class="use-ajax delete-cat-btn" data-dialog-type="modal">Delete</a></div>
+              <div class="edit-cat"><a href="/doktor_net/editcat/{{ cat.id }}" class="use-ajax edit-cat-btn" data-dialog-type="modal">Edit</a></div>
+              <div class="delete-cat"><a href="/doktor_net/deletecat/{{ cat.id }}" class="use-ajax delete-cat-btn" data-dialog-type="modal">Delete</a></div>
             </div>
           {% endif %}
         </div>

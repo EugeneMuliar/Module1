@@ -10,7 +10,7 @@ function doktor_net_theme($existing, $type, $theme, $path) {
       'variables' => [
         'data' => NULL,
         'form'=> NULL,
-        'cats'=> NULL,
+        'cats'=> [],
         ],
     ]
   ];

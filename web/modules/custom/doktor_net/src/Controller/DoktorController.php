@@ -21,9 +21,6 @@ class DoktorController extends ControllerBase {
     //Get form to the variable
     $doktorform['doktor_form'] = \Drupal::formBuilder()->getForm('Drupal\doktor_net\Form\DoktorForm');
 
-    //Send values to template
-
-
     // Get data from database
     $query = \Drupal::database()->select('cats', 'c');
     $query->fields('c', ['id', 'cats_name', 'email', 'fid', 'timestamp'])->orderBy('timestamp', 'desc');

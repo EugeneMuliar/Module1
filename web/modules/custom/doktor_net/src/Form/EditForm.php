@@ -2,6 +2,7 @@
 
 namespace Drupal\doktor_net\Form;
 
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\AlertCommand;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Ajax\HtmlCommand;
@@ -9,32 +10,34 @@ use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\file\Entity\File;
-use Twig\Error\RuntimeError;
-use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Url;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\Core\Database\Database;
+use Drupal\file\Entity\File;
 
-/**
- * Implements an example form.
- */
-class DoktorForm extends FormBase
-{
+class EditForm extends FormBase{
+
+  public  $catID;
+
   public function getFormId()
   {
-    return 'doktor_form';
+    return 'Edit cat';
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state, $catID = NULL){
+    $this->id = $catID;
+    $query = \Drupal::database();
+    $data = $query->select('cats', 'c')
+      ->condition('c.id', $catID, '=')
+      ->fields('c', ['id', 'cats_name', 'email', 'fid'])
+      ->execute()
+      ->fetchAll();
     $form['cats_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Cat Name'),
       '#description' => $this->t('Enter cat name. Note that name must be longer than 2 characters and shorter than 32 characters'),
       '#maxlength' => 32,
       '#required' => TRUE,
-      '#suffix' => '<span class="name-valid-message valid-message"></span>'
+      '#suffix' => '<span class="name-valid-message valid-message"></span>',
+      '#default_value' => $data[0]->cats_name,
     ];
     $form['email'] = [
       '#type' => 'email',
@@ -45,7 +48,8 @@ class DoktorForm extends FormBase
         'callback' => '::validateEmailAjax',
         'event' => 'change',
       ],
-      '#suffix' => '<span class="email-valid-message valid-message"></span>'
+      '#suffix' => '<span class="email-valid-message valid-message"></span>',
+      '#default_value' => $data[0]->email,
     ];
     $form['cats_image'] = [
       '#type' => 'managed_file',
@@ -57,12 +61,12 @@ class DoktorForm extends FormBase
       '#upload_validators' => [
         'file_validate_extensions' => ['png jpg jpeg'],
         'file_validate_size' => [2*1024*1024],
-        ],
+      ],
       '#ajax' => [
         'callback' => '::validateIMGAjax',
         'event' => 'load',
       ],
-
+      '#default_value' => $data[0]->fid,
     ];
     $form['submit'] = [
       '#type' => 'submit',
@@ -72,9 +76,7 @@ class DoktorForm extends FormBase
         'callback' => '::submitAjaxMessage',
         'event' => 'click',
       ],
-
     ];
-
     return $form;
   }
   //Function that validate Name field on its length
@@ -95,7 +97,6 @@ class DoktorForm extends FormBase
     }
     return FALSE;
   }
-
   //Function that validate Email field with Ajax
   public function validateEmailAjax(array &$form, FormStateInterface $form_state)
   {
@@ -131,28 +132,25 @@ class DoktorForm extends FormBase
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
     $picture = $form_state->getValue('cats_image');
-    $current_date = date('d/m/y h:i:s',  strtotime('+3 hour'));
 
     //check fields are valid
     if($this->validateName($form, $form_state) && $this->validateEmail($form, $form_state) && $this->IsImageSet($form, $form_state)){
 
-        //save file as permanent
-        $file = File::load($picture[0]);
-        $file->setPermanent();
-        $file->save();
+      //save file as permanent
+      $file = File::load($picture[0]);
+      $file->setPermanent();
+      $file->save();
 
-        $picture_name =  $file->getFileUri();
-        $cat = [
-          'cats_name' => $form_state->getValue('cats_name'),
-          'email' => $form_state->getValue('email'),
-          'fid' => $picture[0],
-          'timestamp' => $current_date,
-        ];
+      $picture_name =  $file->getFileUri();
+      $cat = [
+        'cats_name' => $form_state->getValue('cats_name'),
+        'email' => $form_state->getValue('email'),
+        'fid' => $picture[0],
+      ];
 
-        \Drupal::database()->insert('cats')->fields($cat)->execute();
+      \Drupal::database()->update('cats') ->condition('id', $this->id)->fields($cat)->execute();
     }
   }
-
   //Function that validate Name and Image field with Ajax
   public function submitAjaxMessage(array &$form, FormStateInterface $form_state)
   {

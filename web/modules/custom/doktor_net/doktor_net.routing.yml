@@ -5,3 +5,27 @@ doktor_net.content:
     _title: 'Hello! You can add here a photo of your cat.'
   requirements:
     _permission: 'access content'
+
+doktor_net.deleteCat:
+  path: '/doktor_net/deletecat/{catID}'
+  defaults:
+    _form: '\Drupal\doktor_net\Form\DeleteForm'
+    _title: 'Are U Sure?'
+  requirements:
+    _role: 'administrator'
+
+doktor_net.editCat:
+  path: '/doktor_net/editcat/{catID}'
+  defaults:
+    _form: '\Drupal\doktor_net\Form\EditForm'
+    _title: 'Are U Sure?'
+  requirements:
+    _role: 'administrator'
+
+doktor_net.AdminContent:
+  path: '/admin/structure/cats'
+  defaults:
+    _controller: '\Drupal\doktor_net\Controller\DoktorController::content'
+    _title: 'Hello! You can add here a photo of your cat.'
+  requirements:
+    _permission: 'access content'
