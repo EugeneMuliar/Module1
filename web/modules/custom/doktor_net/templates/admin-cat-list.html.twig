@@ -1,0 +1,44 @@
+
+<h2>Add your cat!</h2>
+  {{ form }}
+<br/>
+{% if cats %}
+  <table class="cats_table">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Image</th>
+      <th>Date & Time</th>
+      <th>Actions</th>
+    </tr>
+    {% for cat in cats %}
+    <tr class="cat-row">
+      <td class="cat-name">{{ cat.cats_name }}</td>
+      <td class="cat-email">{{ cat.email }}</td>
+      <td class="cat-image"><a href="{{ file_url(cat.fid['#uri']) }}" target="_blank">{{ cat.fid }}</a></td>
+      <td class="cat-created-date">{{ cat.created_date}}</td>
+      <td class="cat-btn">
+        {% if user.hasPermission('administer nodes') %}
+          <span class="edit-cat"><a href="/doktor_net/editcat/{{ cat.id }}" class="use-ajax edit-cat-btn" data-dialog-type="modal"><button>Edit</button></a></span>
+          <span class="delete-cat"><a href="/doktor_net/deletecat/{{ cat.id }}" class="use-ajax delete-cat-btn" data-dialog-type="modal"><button>Delete</button></a></span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+
+{#    {% for cat in cats %}#}
+{#      <div class="cat-card">#}
+{#        <h3 class="cat-name">{{ cat.cats_name }}</h3>#}
+{#        <h4 class="cat-email">{{ cat.email }}</h4>#}
+{#        <div class="cat-image"><a href="{{ file_url(cat.fid['#uri']) }}" target="_blank">{{ cat.fid }}</a></div>#}
+{#        <h5 class="cat-created-date">{{ cat.created_date}}</h5>#}
+{#        {% if user.hasPermission('administer nodes') %}#}
+{#          <div class="cat-btn">#}
+{#            <div class="edit-cat"><a href="/doktor_net/editcat/{{ cat.id }}" class="use-ajax edit-cat-btn" data-dialog-type="modal">Edit</a></div>#}
+{#            <div class="delete-cat"><a href="/doktor_net/deletecat/{{ cat.id }}" class="use-ajax delete-cat-btn" data-dialog-type="modal">Delete</a></div>#}
+{#          </div>
+{#        {% endif %}#}
+{#      </div>#}
+{#    {% endfor %}#}
+  </table>
+{% endif %}

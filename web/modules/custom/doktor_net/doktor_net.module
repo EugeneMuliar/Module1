@@ -12,6 +12,14 @@ function doktor_net_theme($existing, $type, $theme, $path) {
         'form'=> NULL,
         'cats'=> [],
         ],
-    ]
+    ],
+    'admin-cat-list' => [
+      'render element' => 'form', //render form to display
+      'variables' => [
+        'data' => NULL,
+        'form'=> NULL,
+        'cats'=> [],
+      ],
+    ],
   ];
 }

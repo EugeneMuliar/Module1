@@ -25,7 +25,7 @@ doktor_net.editCat:
 doktor_net.AdminContent:
   path: '/admin/structure/cats'
   defaults:
-    _controller: '\Drupal\doktor_net\Controller\DoktorController::content'
+    _controller: '\Drupal\doktor_net\Controller\AdminController::content'
     _title: 'Hello! You can add here a photo of your cat.'
   requirements:
     _permission: 'access content'
